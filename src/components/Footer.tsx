@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowUp, Heart, MessageCircle } from "lucide-react";
 
 const quickLinks = [
@@ -21,8 +22,14 @@ export default function Footer() {
           {/* ── Brand ── */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-9 w-9 rounded-xl bg-[#56c5d8] flex items-center justify-center text-[#0e1726] font-extrabold text-sm">
-                F
+              <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-white/20 bg-[#152238]">
+                <Image
+                  src="/images/fahad-profile.jpg"
+                  alt="Syed Muhammad Fahad"
+                  fill
+                  sizes="36px"
+                  className="object-cover object-top"
+                />
               </div>
               <div>
                 <span className="block text-sm font-bold text-white">

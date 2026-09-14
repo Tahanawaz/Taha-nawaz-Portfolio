@@ -49,6 +49,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Syed Muhammad Fahad" }],
   creator: "Syed Muhammad Fahad",
   publisher: "Syed Muhammad Fahad",
+  icons: {
+    icon: "/images/fahad-profile.jpg",
+    shortcut: "/images/fahad-profile.jpg",
+    apple: "/images/fahad-profile.jpg",
+  },
   alternates: {
     canonical: "/",
   },
