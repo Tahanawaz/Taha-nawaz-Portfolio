@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import {
   GraduationCap,
   Award,
@@ -41,6 +42,7 @@ const CERTIFICATIONS = [
     title: "ETTP Cycle Spring 2026 — Tech Category Winner",
     meta: "SEE Pakistan 2026 · Smart Track project",
     href: "",
+    image: "",
     icon: Award,
     color: "#56c5d8",
   },
@@ -48,6 +50,7 @@ const CERTIFICATIONS = [
     title: "AI Fundamentals",
     meta: "Google · Coursera · September 17, 2026",
     href: "https://www.coursera.org/verify/9J0UHJYKGHV",
+    image: "/images/AI-Fundamentals-certificate.jpg",
     icon: Award,
     color: "#56c5d8",
   },
@@ -55,6 +58,7 @@ const CERTIFICATIONS = [
     title: "Introduction to SQL",
     meta: "SQL fundamentals, queries, filtering, joins, and data handling",
     href: "",
+    image: "",
     icon: Award,
     color: "#56c5d8",
   },
@@ -165,6 +169,23 @@ export default function AboutSection() {
                 whileHover={{ y: -3 }}
                 className="glass-card p-5 flex items-center gap-4"
               >
+                {cert.image && (
+                  <a
+                    href={cert.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative h-14 w-20 flex-none overflow-hidden rounded-lg border border-white/10 bg-white"
+                    aria-label={`Open ${cert.title} certificate image`}
+                  >
+                    <Image
+                      src={cert.image}
+                      alt={`${cert.title} certificate awarded to Taha Nawaz`}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  </a>
+                )}
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-xl"
                   style={{ background: `${cert.color}15`, color: cert.color }}

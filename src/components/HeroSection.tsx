@@ -183,7 +183,7 @@ export default function HeroSection() {
             variants={fadeUp}
             className="lg:col-span-5 flex justify-center lg:justify-end lg:pt-10"
           >
-            <div className="relative w-full max-w-sm aspect-[4/5] lg:rotate-2">
+            <div className="relative w-full max-w-[21rem] aspect-[229/400] lg:-translate-y-3 lg:rotate-2">
               {/* Decorative Glow */}
               <div className="absolute -inset-3 rounded-[1.75rem] border border-[#56c5d8]/20" />
               
@@ -198,7 +198,7 @@ export default function HeroSection() {
                   fill
                   priority
                   sizes="(min-width: 1024px) 384px, calc(100vw - 2.5rem)"
-                  className="object-cover object-center contrast-105 transition-transform duration-500 hover:scale-[1.02]"
+                  className="object-contain object-top contrast-105 transition-transform duration-500 hover:scale-[1.01]"
                 />
                 
                 {/* Floating overlay tag */}
