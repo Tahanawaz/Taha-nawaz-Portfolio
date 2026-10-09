@@ -33,6 +33,7 @@ export default function Navbar() {
       setActive(found);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -57,13 +58,14 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Back to the top"
           className="flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-[#56c5d8] text-[#0e1726] font-extrabold text-lg shadow-lg shadow-black/20"
         >
-          F
+          TN
         </motion.button>
 
         {/* ── Desktop Links ── */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
             <button
               key={l.href}
@@ -88,7 +90,7 @@ export default function Navbar() {
         {/* ── Right: CTA / Mobile Menu ── */}
         <div className="flex items-center gap-2">
           <motion.a
-            href="https://wa.me/923454565755?text=Hi%20Fahad!%20I%20visited%20your%20portfolio%20and%20would%20love%20to%20connect."
+            href="https://wa.me/923096733225?text=Hi%20Taha!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20connect."
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
@@ -102,6 +104,9 @@ export default function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setOpen(!open)}
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
             className="lg:hidden flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-full text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
@@ -113,6 +118,7 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
@@ -136,7 +142,7 @@ export default function Navbar() {
                 </motion.button>
               ))}
               <motion.a
-                href="https://wa.me/923454565755"
+                href="https://wa.me/923096733225"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -16 }}

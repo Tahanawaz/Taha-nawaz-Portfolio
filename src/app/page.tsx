@@ -8,36 +8,36 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Syed Muhammad Fahad",
-  alternateName: ["Syed Fahad", "Fahad Software Engineer"],
-  url: "https://syedfahad22.vercel.app",
-  image: "https://syedfahad22.vercel.app/images/fahad-profile.jpg",
-  jobTitle: "Software Engineer & Full Stack Developer",
+  name: "Taha Nawaz",
+  alternateName: ["Taha", "Taha Nawaz MERN Stack Developer"],
+  url: SITE_URL,
+  image: `${SITE_URL}/images/Taha-profile.jpg`,
+  jobTitle: "MERN Stack Developer & Software Engineer",
   description:
-    "Software Engineer and Full Stack Developer specializing in MERN, Next.js, WebRTC, real-time systems, and AI integrations.",
-  email: "syedfahad305171@gmail.com",
+    "Software Engineering student and MERN Stack Developer with experience in React.js, Node.js, backend development, and real-time systems.",
+  email: "mt486045@gmail.com",
+  telephone: "+923096733225",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Lahore",
     addressCountry: "PK",
   },
   sameAs: [
-    "https://github.com/smfahad19",
-    "https://www.linkedin.com/in/syed-muhammad-fahad-472490285/",
+    "https://github.com/Tahanawaz",
+    "https://www.linkedin.com/in/taha-nawaz-9a390a294",
   ],
   knowsAbout: [
     "Software Engineering",
-    "Full Stack Development",
     "MERN Stack",
-    "Next.js",
-    "React",
+    "React.js",
     "Node.js",
-    "WebRTC",
-    "Artificial Intelligence",
+    "Socket.io",
+    "Python",
     "REST APIs",
   ],
 };

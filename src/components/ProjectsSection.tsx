@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X, ChevronRight, Github, ExternalLink } from "lucide-react";
 
@@ -14,7 +14,7 @@ interface Project {
   description: string;
   highlights: string[];
   status: "Ongoing" | "Completed";
-  githubUrl: string;
+  githubUrl?: string;
 }
 
 const PROJECTS: Project[] = [
@@ -59,7 +59,6 @@ const PROJECTS: Project[] = [
       "Tailwind CSS",
     ],
     color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19?tab=repositories",
     description:
       "An intelligent job platform that leverages Google Gemini AI for smart job-candidate matching, resume analysis, and automated job recommendations based on skills and preferences.",
     highlights: [
@@ -159,9 +158,8 @@ const PROJECTS: Project[] = [
     title: "Personal Developer Portfolio",
     subtitle: "Interactive & Animated Web Experience",
     category: ["all"],
-    stack: ["Next.js 14", "Framer Motion", "Tailwind CSS", "React"],
+    stack: ["Next.js", "Framer Motion", "Tailwind CSS", "React"],
     color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19?tab=repositories",
     description:
       "A highly interactive, performance-optimized personal portfolio designed to showcase my engineering skills and projects with a premium, dynamic user interface.",
     highlights: [
@@ -180,7 +178,6 @@ const PROJECTS: Project[] = [
     category: ["enterprise"],
     stack: ["MongoDB", "Express.js", "React", "Node.js", "Mongoose"],
     color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19?tab=repositories",
     description:
       "A specialized platform connecting entrepreneurs with investors, allowing users to create detailed pitches, upload pitch decks, and facilitate secure communications.",
     highlights: [
@@ -199,7 +196,6 @@ const PROJECTS: Project[] = [
     category: ["enterprise"],
     stack: ["Python", "Flask", "SQL", "HTML/CSS", "JavaScript"],
     color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19?tab=repositories",
     description:
       "A professional corporate website developed for Axorvian, featuring dynamic content management, service showcases, and client lead generation forms.",
     highlights: [
@@ -225,7 +221,50 @@ export default function ProjectsSection() {
   const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const ref = useRef(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedProject(null);
+      if (event.key !== "Tab" || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      lastTriggerRef.current?.focus();
+    };
+  }, [selectedProject]);
+
+  const openProject = (project: Project, trigger: HTMLButtonElement) => {
+    lastTriggerRef.current = trigger;
+    setSelectedProject(project);
+  };
 
   const filtered =
     filter === "all"
@@ -268,6 +307,7 @@ export default function ProjectsSection() {
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
+              aria-pressed={filter === f.id}
               className={`relative rounded-xl px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-300 ${
                 filter === f.id
                   ? "text-white"
@@ -290,7 +330,7 @@ export default function ProjectsSection() {
         <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
-              <motion.div
+              <motion.button
                 key={project.id}
                 layout
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -298,8 +338,9 @@ export default function ProjectsSection() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                onClick={() => setSelectedProject(project)}
-                className="glass-card p-6 cursor-pointer group"
+                onClick={(event) => openProject(project, event.currentTarget)}
+                aria-label={`View details for ${project.title}`}
+                className="glass-card p-6 cursor-pointer group text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#56c5d8]"
               >
                 {/* Color accent */}
                 <div
@@ -354,10 +395,10 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* View detail */}
-                <div className="flex items-center gap-1 text-xs font-semibold text-[#56c5d8] opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-1 text-xs font-semibold text-[#56c5d8] opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
                   View Details <ChevronRight size={14} />
                 </div>
-              </motion.div>
+              </motion.button>
             ))}
           </AnimatePresence>
         </motion.div>
@@ -372,18 +413,26 @@ export default function ProjectsSection() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
             onClick={() => setSelectedProject(null)}
+            role="presentation"
           >
             <motion.div
+              ref={dialogRef}
               initial={{ opacity: 0, scale: 0.92, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92, y: 20 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
               onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-dialog-title"
+              aria-describedby="project-dialog-description"
               className="glass-card relative w-full max-w-2xl max-h-[calc(100dvh-2rem)] overflow-y-auto p-6 pt-14 sm:p-8 sm:pt-14"
             >
               {/* Close */}
               <button
+                ref={closeButtonRef}
                 onClick={() => setSelectedProject(null)}
+                aria-label="Close project details"
                 className="absolute top-4 right-4 rounded-lg p-2 text-slate-500 hover:text-white hover:bg-white/[0.06] transition-colors"
               >
                 <X size={18} />
@@ -418,7 +467,7 @@ export default function ProjectsSection() {
               </span>
 
               {/* Title */}
-              <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-1">
+              <h3 id="project-dialog-title" className="text-xl sm:text-2xl font-extrabold text-white mb-1">
                 {selectedProject.title}
               </h3>
               <p className="text-sm text-slate-400 mb-5">
@@ -426,7 +475,7 @@ export default function ProjectsSection() {
               </p>
 
               {/* Description */}
-              <p className="text-sm text-slate-300 leading-relaxed mb-6">
+              <p id="project-dialog-description" className="text-sm text-slate-300 leading-relaxed mb-6">
                 {selectedProject.description}
               </p>
 
@@ -468,16 +517,27 @@ export default function ProjectsSection() {
                 ))}
               </div>
 
-              <a
-                href={selectedProject.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#56c5d8] px-5 py-3 text-sm font-bold text-[#0e1726] transition-colors hover:bg-white"
-              >
-                <Github size={17} />
-                Visit Code
-                <ExternalLink size={14} />
-              </a>
+              {selectedProject.githubUrl ? (
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#56c5d8] px-5 py-3 text-sm font-bold text-[#0e1726] transition-colors hover:bg-white"
+                >
+                  <Github size={17} />
+                  Visit Code
+                  <ExternalLink size={14} />
+                </a>
+              ) : (
+                <a
+                  href="#contact"
+                  onClick={() => setSelectedProject(null)}
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl border border-[#56c5d8]/40 px-5 py-3 text-sm font-bold text-[#56c5d8] transition-colors hover:bg-[#56c5d8] hover:text-[#0e1726]"
+                >
+                  Ask about this project
+                  <ChevronRight size={15} />
+                </a>
+              )}
             </motion.div>
           </motion.div>
         )}

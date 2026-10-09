@@ -41,6 +41,9 @@ export default function BackgroundVideo() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionPreference.matches) return;
+
     const draw = (ts: number) => {
       const cvs = canvasRef.current;
       if (!cvs) return;
@@ -154,22 +157,39 @@ export default function BackgroundVideo() {
       if (!scrollFrame) scrollFrame = requestAnimationFrame(updateParallax);
     };
 
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animFrameRef.current);
+        return;
+      }
+
+      lastTimeRef.current = performance.now();
+      lastFrameRef.current = 0;
+      animFrameRef.current = requestAnimationFrame(draw);
+    };
+
     resize();
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("visibilitychange", onVisibilityChange);
     lastTimeRef.current = performance.now();
     animFrameRef.current = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       if (scrollFrame) cancelAnimationFrame(scrollFrame);
       cancelAnimationFrame(animFrameRef.current);
     };
   }, [initParticles]);
 
   return (
-    <div ref={sceneRef} className="background-scene fixed inset-0 z-0 pointer-events-none">
+    <div
+      ref={sceneRef}
+      aria-hidden="true"
+      className="background-scene fixed inset-0 z-0 pointer-events-none"
+    >
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"

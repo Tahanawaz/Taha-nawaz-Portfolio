@@ -9,43 +9,52 @@ import {
   Target,
   Layers,
   Cpu,
-  Globe,
+  ExternalLink,
   Zap,
 } from "lucide-react";
 
 const HIGHLIGHTS = [
   {
     icon: Layers,
-    title: "Scalable Architecture",
-    desc: "Building production-grade RESTful APIs with clean separation of concerns, efficient middleware, and robust error handling.",
+    title: "MERN Stack Development",
+    desc: "Working with MongoDB, Express.js, React.js, and Node.js to build full-stack web applications.",
+  },
+  {
+    icon: Cpu,
+    title: "React.js Development",
+    desc: "Building web interfaces and frontend functionality with React.js.",
+  },
+  {
+    icon: Zap,
+    title: "Backend Development",
+    desc: "Working on backend development and server-side functionality with Node.js.",
   },
   {
     icon: Cpu,
     title: "Real-Time Systems",
-    desc: "WebRTC video/audio, Socket.io live sync, WebHooks for event-driven flows — from telemedicine to live notifications.",
-  },
-  {
-    icon: Globe,
-    title: "AI-Powered Solutions",
-    desc: "Integrating Google Gemini API for intelligent job matching, automated analysis, and next-gen user experiences.",
-  },
-  {
-    icon: Zap,
-    title: "End-to-End Delivery",
-    desc: "From database design (PostgreSQL, MongoDB, Redis) to polished frontends — shipping features that users love.",
+    desc: "Building and learning real-time system functionality for modern web applications.",
   },
 ];
 
 const CERTIFICATIONS = [
   {
-    title: "MERN Stack Development Certification",
-    org: "ZerTech",
+    title: "ETTP Cycle Spring 2026 — Tech Category Winner",
+    meta: "SEE Pakistan 2026 · Smart Track project",
+    href: "",
     icon: Award,
     color: "#56c5d8",
   },
   {
-    title: "Full Stack Developer — Experience Letter",
-    org: "Ezitech Solutions",
+    title: "AI Fundamentals",
+    meta: "Google · Coursera · September 17, 2026",
+    href: "https://www.coursera.org/verify/9J0UHJYKGHV",
+    icon: Award,
+    color: "#56c5d8",
+  },
+  {
+    title: "Introduction to SQL",
+    meta: "SQL fundamentals, queries, filtering, joins, and data handling",
+    href: "",
     icon: Award,
     color: "#56c5d8",
   },
@@ -79,13 +88,12 @@ export default function AboutSection() {
             About Me
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
-            Engineering <span className="text-accent">Philosophy</span>
+            How I <span className="text-accent">Build</span>
           </h2>
           <p className="max-w-3xl text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed">
-            I believe that great software is built at the intersection of
-            elegant design and robust engineering. My approach focuses on writing
-            clean, maintainable code while delivering exceptional user
-            experiences.
+            I enjoy turning real product requirements into clear, maintainable
+            software. My work combines thoughtful interfaces with reliable APIs,
+            practical database design, and close attention to the user journey.
           </p>
         </motion.div>
 
@@ -134,11 +142,11 @@ export default function AboutSection() {
                 BS Software Engineering
               </h3>
               <p className="text-sm text-slate-300 mb-1">
-                The Superior University, Lahore
+                 Superior University Gold Campus, Lahore
               </p>
               <p className="text-xs text-slate-500">
                 2024 – 2028 &nbsp;|&nbsp; 6th Semester &nbsp;|&nbsp; CGPA:{" "}
-                <span className="text-[#56c5d8] font-bold">3.42</span>
+                <span className="text-[#56c5d8] font-bold">3.70</span>
               </p>
             </div>
           </motion.div>
@@ -165,7 +173,17 @@ export default function AboutSection() {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-white">{cert.title}</h4>
-                  <p className="text-xs text-slate-500">{cert.org}</p>
+                  <p className="text-xs text-slate-500">{cert.meta}</p>
+                  {cert.href && (
+                    <a
+                      href={cert.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[#56c5d8] hover:text-white transition-colors"
+                    >
+                      Verify credential <ExternalLink size={11} />
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -185,13 +203,11 @@ export default function AboutSection() {
             className="mx-auto mb-4 text-[#56c5d8]"
           />
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl mx-auto">
-            Currently building a{" "}
+            Currently open to job opportunities as a{" "}
             <span className="text-[#56c5d8] font-semibold">
-              Telemedicine &amp; Video Consultation Platform
+              MERN Stack Developer and Software Engineer
             </span>{" "}
-            with WebRTC, Mediasoup/LiveKit, and Stripe integration. Passionate
-            about turning complex real-world problems into elegant,
-            production-ready software solutions.
+            in Lahore, Pakistan.
           </p>
         </motion.div>
       </div>

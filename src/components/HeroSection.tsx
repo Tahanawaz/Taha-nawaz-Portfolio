@@ -1,39 +1,39 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import {
   ArrowDown,
-  MessageCircle,
-  Briefcase,
-  GraduationCap,
-  Rocket,
+  Github,
   Code2,
 } from "lucide-react";
 
 const ROLES = [
-  "Full Stack MERN Developer",
-  "Next.js 14 Specialist",
-  "WebRTC & Real-time Architect",
-  "Gemini AI Integrator",
-  "RESTful API Engineer",
+  "MERN Stack Developer",
+  "Software Engineer",
+  "React.js Developer",
+  "Backend Developer",
+  "Real-Time Systems Developer",
 ];
 
 const STATS = [
-  { label: "Key Projects", value: "5+", icon: Rocket },
-  { label: "Internships", value: "2", icon: Briefcase },
-  { label: "CGPA", value: "3.42", icon: GraduationCap },
-  { label: "Production Ready", value: "100%", icon: Code2 },
+  { label: "Experience", value: "9 Mo." },
+  { label: "Internships", value: "2" },
+  { label: "CGPA", value: "3.70" },
+  { label: "Certificates", value: "3" },
 ];
 
 export default function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   // Typing effect
   useEffect(() => {
+    if (shouldReduceMotion) return;
+
     const current = ROLES[roleIndex];
     const speed = isDeleting ? 30 : 60;
 
@@ -59,7 +59,7 @@ export default function HeroSection() {
     }, speed);
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, roleIndex]);
+  }, [displayText, isDeleting, roleIndex, shouldReduceMotion]);
 
   const container = {
     hidden: {},
@@ -92,7 +92,7 @@ export default function HeroSection() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#56c5d8] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#56c5d8]"></span>
                 </span>
-                Available for New Opportunities
+                Open to Work
               </span>
             </motion.div>
 
@@ -101,15 +101,13 @@ export default function HeroSection() {
               variants={fadeUp}
               className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl xl:text-[6.5rem] font-extrabold tracking-[-0.06em] leading-[0.9] mb-8 text-white"
             >
-              Syed Muhammad
-              <br />
-              <span className="text-accent">Fahad<span className="text-[#56c5d8]">.</span></span>
+              Taha <span className="text-accent">Nawaz<span className="text-[#56c5d8]">.</span></span>
             </motion.h1>
 
             {/* Typing Role */}
             <motion.div variants={fadeUp} className="mb-6 h-8 sm:h-10">
               <span className="font-mono text-base sm:text-lg font-bold uppercase tracking-wider text-[#b3becb]">
-                {displayText}
+                {shouldReduceMotion ? ROLES[0] : displayText}
                 <span
                   className="inline-block w-[3px] h-[1.1em] bg-[#56c5d8] ml-1 align-middle"
                   style={{ animation: "typing-cursor 0.8s step-end infinite" }}
@@ -122,9 +120,10 @@ export default function HeroSection() {
               variants={fadeUp}
               className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl mb-10"
             >
-              Syed Muhammad Fahad is a Software Engineer and Full Stack Developer
-              from Lahore, building scalable Next.js and MERN applications,
-              real-time WebRTC systems, and practical AI-powered products.
+              I&apos;m a Software Engineering student, freelancer, and MERN Stack
+              Developer based in Lahore, Pakistan. I have nine months of
+              experience as a MERN Stack Developer and I&apos;m currently open to
+              job opportunities.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -142,19 +141,19 @@ export default function HeroSection() {
                 }
                 className="rounded-sm bg-[#56c5d8] text-[#0e1726] px-6 py-3 text-sm font-extrabold hover:bg-white transition-colors shadow-[5px_5px_0_#367d88]"
               >
-                View My Work
+                View Projects
               </motion.button>
 
               <motion.a
-                href="https://wa.me/923454565755?text=Hi%20Fahad!%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20an%20opportunity."
+                href="https://github.com/Tahanawaz"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-2 rounded-sm border border-white/[0.2] px-6 py-3 text-sm font-bold text-[#f3f0e8] hover:border-[#56c5d8] hover:text-[#56c5d8] transition-colors"
               >
-                <MessageCircle size={16} className="text-[#25D366]" />
-                WhatsApp Me
+                <Github size={16} className="text-[#56c5d8]" />
+                Explore GitHub
               </motion.a>
             </motion.div>
 
@@ -194,11 +193,12 @@ export default function HeroSection() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <Image
-                  src="/images/fahad-profile.jpg"
-                  alt="Syed Muhammad Fahad"
+                  src="/images/Taha-profile.jpg"
+                  alt="Taha Nawaz"
                   fill
-                  className="object-cover object-top grayscale-[25%] contrast-110 opacity-90 transition-all hover:grayscale-0 hover:opacity-100"
                   priority
+                  sizes="(min-width: 1024px) 384px, calc(100vw - 2.5rem)"
+                  className="object-cover object-center contrast-105 transition-transform duration-500 hover:scale-[1.02]"
                 />
                 
                 {/* Floating overlay tag */}
@@ -208,7 +208,7 @@ export default function HeroSection() {
                       <Code2 size={16} className="text-[#0e1726]" />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-white">Full Stack Dev</p>
+                      <p className="text-sm font-semibold text-white">MERN Stack Developer</p>
                       <p className="text-[11px] text-slate-400">Lahore, Pakistan</p>
                     </div>
                   </div>

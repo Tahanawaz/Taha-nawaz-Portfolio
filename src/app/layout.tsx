@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Mono } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -16,43 +17,38 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://syedfahad22.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Syed Muhammad Fahad | Software Engineer & Full Stack Developer",
-    template: "%s | Syed Muhammad Fahad",
+    default: "Taha Nawaz | MERN Stack Developer & Software Engineer",
+    template: "%s | Taha Nawaz",
   },
   description:
-    "Syed Muhammad Fahad is a Software Engineer and Full Stack Developer in Lahore, Pakistan, building production-ready MERN, Next.js, WebRTC, real-time, and AI-powered applications.",
+    "Taha Nawaz is a Software Engineering student and MERN Stack Developer in Lahore, Pakistan, with experience in React.js, Node.js, backend development, and real-time systems.",
   keywords: [
-    "Syed Muhammad Fahad",
-    "Syed Fahad",
-    "Fahad Software Engineer",
-    "Syed Muhammad Fahad Software Engineer",
-    "Syed Muhammad Fahad Full Stack Developer",
-    "Full Stack Developer Lahore",
+    "Taha Nawaz",
+    "Taha Nawaz Software Engineer",
+    "Taha Nawaz MERN Stack Developer",
+    "MERN Stack Developer Lahore",
     "Software Engineer Lahore Pakistan",
     "MERN Stack Developer Pakistan",
-    "Next.js Developer Pakistan",
     "React Node.js Developer Lahore",
-    "WebRTC Developer",
-    "AI Integration Developer",
-    "Full Stack Developer",
+    "Backend Developer Lahore",
+    "Real-Time Systems Developer",
+    "MERN Stack Developer",
     "MERN Stack",
-    "Next.js",
     "React",
     "Node.js",
-    "WebRTC",
     "Socket.io",
     "Portfolio",
-    "Syed Muhammad Fahad",
+    "Taha Nawaz",
   ],
-  authors: [{ name: "Syed Muhammad Fahad" }],
-  creator: "Syed Muhammad Fahad",
-  publisher: "Syed Muhammad Fahad",
+  authors: [{ name: "Taha Nawaz" }],
+  creator: "Taha Nawaz",
+  publisher: "Taha Nawaz",
   icons: {
-    icon: "/images/fahad-profile.jpg",
-    shortcut: "/images/fahad-profile.jpg",
-    apple: "/images/fahad-profile.jpg",
+    icon: "/images/Taha-profile.jpg",
+    shortcut: "/images/Taha-profile.jpg",
+    apple: "/images/Taha-profile.jpg",
   },
   alternates: {
     canonical: "/",
@@ -69,19 +65,28 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Syed Muhammad Fahad | Software Engineer & Full Stack Developer",
+    title: "Taha Nawaz | MERN Stack Developer & Software Engineer",
     description:
-      "Software Engineer from Lahore building scalable full-stack, real-time, and AI-powered products.",
-    url: "https://syedfahad22.vercel.app",
-    siteName: "Syed Muhammad Fahad Portfolio",
+      "Software Engineering student and MERN Stack Developer from Lahore with nine months of development experience.",
+    url: SITE_URL,
+    siteName: "Taha Nawaz Portfolio",
     type: "website",
     locale: "en_PK",
+    images: [
+      {
+        url: "/images/Taha-profile.jpg",
+        width: 916,
+        height: 1600,
+        alt: "Taha Nawaz — Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Syed Muhammad Fahad | Software Engineer",
+    title: "Taha Nawaz | MERN Stack Developer & Software Engineer",
     description:
-      "Full Stack Software Engineer specializing in MERN, Next.js, WebRTC, and AI integrations.",
+      "Software Engineering student and MERN Stack Developer based in Lahore, Pakistan.",
+    images: ["/images/Taha-profile.jpg"],
   },
 };
 

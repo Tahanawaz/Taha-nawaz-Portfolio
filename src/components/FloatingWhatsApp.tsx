@@ -14,7 +14,7 @@ export default function FloatingWhatsApp() {
       />
 
       <motion.a
-        href="https://wa.me/923454565755?text=Hi%20Fahad!%20I%20visited%20your%20portfolio.%20Let%27s%20connect!"
+        href="https://wa.me/923096733225?text=Hi%20Taha!%20I%20visited%20your%20portfolio.%20Let%27s%20connect!"
         target="_blank"
         rel="noopener noreferrer"
         whileHover={{ scale: 1.12, rotate: -8 }}
@@ -31,7 +31,7 @@ export default function FloatingWhatsApp() {
         whileHover={{ opacity: 1, x: 0 }}
         className="absolute right-[70px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-[#111a30] px-3 py-1.5 text-xs font-semibold text-white border border-white/[0.06] shadow-xl pointer-events-none"
       >
-        Chat with Fahad 💬
+        Chat with Taha
       </motion.div>
     </div>
   );

@@ -10,12 +10,8 @@ const CATEGORIES = [
     color: "#56c5d8",
     skills: [
       "React.js",
-      "Next.js 14",
       "JavaScript (ES6+)",
-      "TypeScript",
       "Tailwind CSS",
-      "Redux Toolkit",
-      "Framer Motion",
       "HTML5 / CSS3",
     ],
   },
@@ -25,15 +21,10 @@ const CATEGORIES = [
     color: "#56c5d8",
     skills: [
       "Node.js",
-      "Express.js",
       "Python",
-      "Flask",
       "RESTful APIs",
       "WebSockets (Socket.io)",
-      "WebRTC",
-      "Webhooks",
       "JWT Authentication",
-      "RBAC (Role-Based Access)",
     ],
   },
   {
@@ -44,39 +35,17 @@ const CATEGORIES = [
       "PostgreSQL",
       "MongoDB",
       "MySQL",
-      "SQL",
-      "Redis",
       "Supabase",
-      "Prisma",
-      "Mongoose",
     ],
   },
   {
     id: "tools",
-    label: "Tools & Integration",
+    label: "Tools & Deployment",
     color: "#56c5d8",
     skills: [
-      "Google Gemini API",
       "Stripe Payments",
-      "Cloudinary",
-      "OAuth 2.0",
       "Vercel",
-      "DigitalOcean",
       "Git & GitHub",
-      "Postman",
-    ],
-  },
-  {
-    id: "core",
-    label: "Core CS",
-    color: "#56c5d8",
-    skills: [
-      "Data Structures & Algorithms",
-      "OOP",
-      "C++",
-      "Java",
-      "Database Design",
-      "System Design Basics",
     ],
   },
 ];
@@ -105,7 +74,8 @@ export default function SkillsSection() {
             Technical <span className="text-accent">Arsenal</span>
           </h2>
           <p className="max-w-3xl text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed">
-            I&apos;ve spent years mastering the tools that power the modern web. Here&apos;s a breakdown of my technical stack and core proficiencies.
+            The technologies I use to build full-stack products, from responsive
+            interfaces and APIs to databases, real-time features, and deployment.
           </p>
         </motion.div>
 
@@ -120,6 +90,7 @@ export default function SkillsSection() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
+              aria-pressed={activeTab === cat.id}
               className={`relative rounded-xl px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-300 ${
                 activeTab === cat.id
                   ? "text-white"

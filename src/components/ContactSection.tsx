@@ -15,20 +15,20 @@ import {
 const CONTACT_INFO = [
   {
     icon: Phone,
-    label: "+92 345 4565755",
-    href: "tel:+923454565755",
+    label: "+92 309 6733225",
+    href: "tel:+923096733225",
     color: "#56c5d8",
   },
   {
     icon: Mail,
-    label: "syedfahad305171@gmail.com",
-    href: "mailto:syedfahad305171@gmail.com",
+    label: "mt486045@gmail.com",
+    href: "mailto:mt486045@gmail.com",
     color: "#56c5d8",
   },
   {
     icon: MapPin,
     label: "Lahore, Pakistan",
-    href: "#",
+    href: "https://www.google.com/maps/search/?api=1&query=Lahore%2C%20Pakistan",
     color: "#56c5d8",
   },
 ];
@@ -37,13 +37,13 @@ const SOCIAL_LINKS = [
   {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com/smfahad19",
+    href: "https://github.com/Tahanawaz",
     color: "#e2e8f0",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/syed-muhammad-fahad-472490285/",
+    href: "https://www.linkedin.com/in/taha-nawaz-9a390a294",
     color: "#0077b5",
   },
 ];
@@ -85,7 +85,7 @@ export default function ContactSection() {
 
         {/* ── WhatsApp CTA Card ── */}
         <motion.a
-          href="https://wa.me/923454565755?text=Hi%20Fahad!%20I%20visited%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20project%20/%20opportunity."
+          href="https://wa.me/923096733225?text=Hi%20Taha!%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20opportunity."
           target="_blank"
           rel="noopener noreferrer"
           custom={1}
@@ -107,7 +107,7 @@ export default function ContactSection() {
                 Tap to open a WhatsApp chat with me — fastest way to reach out!
               </p>
               <p className="text-xs text-[#25D366] font-semibold mt-1">
-                +92 345 4565755
+                +92 309 6733225
               </p>
             </div>
             <Send
@@ -136,14 +136,14 @@ export default function ContactSection() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="mailto:syedfahad305171@gmail.com"
+                href="mailto:mt486045@gmail.com"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#56c5d8] px-5 py-3 text-sm font-bold text-[#0e1726] transition-colors hover:bg-white"
               >
                 <Mail size={16} />
-                Email Fahad
+                Email Taha
               </a>
               <a
-                href="https://www.linkedin.com/in/syed-muhammad-fahad-472490285/"
+                href="https://www.linkedin.com/in/taha-nawaz-9a390a294"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-bold text-white transition-colors hover:border-[#56c5d8] hover:text-[#56c5d8]"
@@ -167,6 +167,8 @@ export default function ContactSection() {
               <motion.a
                 key={item.label}
                 href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 whileHover={{ y: -3 }}
                 className="glass-card p-5 flex items-center gap-4 group block"
               >
@@ -201,17 +203,19 @@ export default function ContactSection() {
                     className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06] hover:border-white/[0.15] transition-all"
                     style={{ color: s.color }}
                     title={s.label}
+                    aria-label={`Visit Taha on ${s.label}`}
                   >
                     <s.icon size={18} />
                   </motion.a>
                 ))}
                 <motion.a
-                  href="https://wa.me/923454565755"
+                  href="https://wa.me/923096733225"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#25D366]/40 text-[#25D366] transition-all"
                   title="WhatsApp"
+                  aria-label="Chat with Taha on WhatsApp"
                 >
                   <MessageCircle size={18} />
                 </motion.a>

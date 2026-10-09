@@ -24,8 +24,8 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-white/20 bg-[#152238]">
                 <Image
-                  src="/images/fahad-profile.jpg"
-                  alt="Syed Muhammad Fahad"
+                  src="/images/Taha-profile.jpg"
+                  alt="Taha Nawaz"
                   fill
                   sizes="36px"
                   className="object-cover object-top"
@@ -33,16 +33,16 @@ export default function Footer() {
               </div>
               <div>
                 <span className="block text-sm font-bold text-white">
-                  Syed Muhammad Fahad
+                  Taha Nawaz
                 </span>
                 <span className="block text-[11px] text-slate-500">
-                  Full Stack Developer
+                  MERN Stack Developer
                 </span>
               </div>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed max-w-xs">
-              Building scalable, production-ready applications with the MERN
-              stack, Next.js, WebRTC & AI integration.
+              Software Engineering student and MERN Stack Developer based in
+              Lahore, Pakistan.
             </p>
           </div>
 
@@ -73,23 +73,23 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-slate-500">
               <li>
                 <a
-                  href="mailto:syedfahad305171@gmail.com"
+                  href="mailto:mt486045@gmail.com"
                     className="hover:text-[#56c5d8] transition-colors"
                 >
-                  syedfahad305171@gmail.com
+                  mt486045@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+923454565755"
+                  href="tel:+923096733225"
                   className="hover:text-[#56c5d8] transition-colors"
                 >
-                  +92 345 4565755
+                  +92 309 6733225
                 </a>
               </li>
               <li className="pt-2">
                 <a
-                  href="https://wa.me/923454565755"
+                  href="https://wa.me/923096733225"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-[#25D366] hover:text-[#20bd5a] transition-colors font-medium"
@@ -105,7 +105,7 @@ export default function Footer() {
         {/* ── Bottom Bar ── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.04]">
           <p className="text-xs text-slate-600 flex items-center gap-1">
-            © {new Date().getFullYear()} Syed Muhammad Fahad. Built with{" "}
+            © {new Date().getFullYear()} Taha Nawaz. Built with{" "}
             <Heart size={12} className="text-[#56c5d8]" /> using Next.js &
             Framer Motion
           </p>
