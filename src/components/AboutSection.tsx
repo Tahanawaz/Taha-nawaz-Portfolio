@@ -42,7 +42,7 @@ const CERTIFICATIONS = [
     title: "ETTP Cycle Spring 2026 — Tech Category Winner",
     meta: "SEE Pakistan 2026 · Smart Track project",
     href: "",
-    image: "",
+    image: "/images/SEE%20Pakistan%202026%20Participation%20Certificate.png",
     icon: Award,
     color: "#56c5d8",
   },

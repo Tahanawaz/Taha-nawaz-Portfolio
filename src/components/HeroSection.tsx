@@ -18,7 +18,7 @@ const ROLES = [
 ];
 
 const STATS = [
-  { label: "Experience", value: "9 Mo." },
+  { label: "Experience", value: "1 yr." },
   { label: "Internships", value: "2" },
   { label: "CGPA", value: "3.70" },
   { label: "Certificates", value: "3" },
@@ -121,7 +121,7 @@ export default function HeroSection() {
               className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-xl mb-10"
             >
               I&apos;m a Software Engineering student, freelancer, and MERN Stack
-              Developer based in Lahore, Pakistan. I have nine months of
+              Developer based in Lahore, Pakistan. I have 1 Year of
               experience as a MERN Stack Developer and I&apos;m currently open to
               job opportunities.
             </motion.p>

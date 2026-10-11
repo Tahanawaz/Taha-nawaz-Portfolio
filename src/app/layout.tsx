@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Taha Nawaz | MERN Stack Developer & Software Engineer",
     description:
-      "Software Engineering student and MERN Stack Developer from Lahore with nine months of development experience.",
+      "Software Engineering student and MERN Stack Developer from Lahore with  of development experience.",
     url: SITE_URL,
     siteName: "Taha Nawaz Portfolio",
     type: "website",
