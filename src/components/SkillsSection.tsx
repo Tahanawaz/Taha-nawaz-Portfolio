@@ -10,6 +10,7 @@ const CATEGORIES = [
     color: "#56c5d8",
     skills: [
       "React.js",
+      "Next.js",
       "JavaScript (ES6+)",
       "Tailwind CSS",
       "HTML5 / CSS3",
