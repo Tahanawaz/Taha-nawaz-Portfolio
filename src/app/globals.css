@@ -30,6 +30,12 @@ body {
 	letter-spacing: 0.01em;
 }
 
+/* Keep secondary copy readable against the dark glass surfaces. */
+.text-slate-500,
+.text-slate-600 {
+	color: #94a3b8;
+}
+
 .font-mono {
 	font-family: var(--font-space-mono), monospace;
 }
@@ -44,6 +50,11 @@ a,
 input,
 textarea {
 	font: inherit;
+}
+
+:focus-visible {
+	outline: 2px solid var(--cyan);
+	outline-offset: 3px;
 }
 
 button,
@@ -141,6 +152,57 @@ textarea {
 	animation: ping-slow 2.2s ease-in-out infinite;
 }
 
+.project-modal {
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+
+.contact-field {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.contact-field > span {
+	font-size: 0.7rem;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #93a0b2;
+}
+
+.contact-field input,
+.contact-field textarea {
+	width: 100%;
+	border: 1px solid rgba(244, 247, 251, 0.12);
+	background: rgba(255, 255, 255, 0.035);
+	padding: 0.8rem 0.9rem;
+	color: #f4f7fb;
+	transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.contact-field textarea {
+	resize: vertical;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+	color: #667386;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+	border-color: rgba(86, 197, 216, 0.8);
+	background: rgba(255, 255, 255, 0.055);
+	box-shadow: 0 0 0 3px rgba(86, 197, 216, 0.1);
+	outline: none;
+}
+
+@media (min-width: 1024px) and (min-height: 650px) {
+	.project-modal {
+		overflow: hidden;
+	}
+}
+
 @media (min-width: 640px) {
 	.section-padding {
 		padding-right: 1.5rem;
@@ -148,10 +210,33 @@ textarea {
 	}
 }
 
+@media (max-width: 639px) {
+	.section-padding {
+		padding-top: 6rem;
+		padding-bottom: 6rem;
+	}
+
+	.floating-whatsapp {
+		right: 1rem;
+		bottom: 1rem;
+	}
+
+	.glass-card {
+		border-radius: 0.875rem;
+	}
+}
+
 @media (min-width: 1024px) {
 	.section-padding {
 		padding-top: 11rem;
 		padding-bottom: 11rem;
+	}
+}
+
+@supports (content-visibility: auto) {
+	section.section-padding:not(#hero):not(#projects) {
+		content-visibility: auto;
+		contain-intrinsic-size: auto 900px;
 	}
 }
 

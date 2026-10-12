@@ -24,7 +24,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-white/20 bg-[#152238]">
                 <Image
-                  src="/images/Taha-profile.jpg"
+                  src="/images/Taha-profile.webp"
                   alt="Taha Nawaz"
                   fill
                   sizes="36px"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   MessageCircle,
@@ -50,6 +50,7 @@ const SOCIAL_LINKS = [
 
 export default function ContactSection() {
   const ref = useRef(null);
+  const [formStatus, setFormStatus] = useState("");
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -58,6 +59,19 @@ export default function ContactSection() {
       y: 0,
       transition: { delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
     }),
+  };
+
+  const sendEmail = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const subject = String(form.get("subject") ?? "Portfolio enquiry").trim();
+    const message = String(form.get("message") ?? "").trim();
+    const body = `Hi Taha,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`;
+
+    setFormStatus("Opening your email app with the message ready to send.");
+    window.location.href = `mailto:mt486045@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -119,7 +133,7 @@ export default function ContactSection() {
 
         {/* ── Grid: Direct Contact + Info ── */}
         <div className="grid lg:grid-cols-5 gap-6">
-          {/* Direct Contact */}
+          {/* Direct Contact Form */}
           <motion.div
             custom={2}
             variants={fadeUp}
@@ -129,29 +143,49 @@ export default function ContactSection() {
           >
             <h3 className="text-base font-bold text-white mb-3 flex items-center gap-2">
               <Mail size={18} className="text-[#56c5d8]" />
-              Let&apos;s work together
+              Send me a message
             </h3>
-            <p className="max-w-xl text-sm leading-relaxed text-slate-400">
-              Have a project, product idea, or engineering opportunity? Reach out directly through the channel that works best for you.
+            <p className="mb-6 max-w-xl text-sm leading-relaxed text-slate-400">
+              Share your project or opportunity below. Submit will open your email app with everything ready to send.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href="mailto:mt486045@gmail.com"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#56c5d8] px-5 py-3 text-sm font-bold text-[#0e1726] transition-colors hover:bg-white"
-              >
-                <Mail size={16} />
-                Email Taha
-              </a>
-              <a
-                href="https://www.linkedin.com/in/taha-nawaz-9a390a294"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-bold text-white transition-colors hover:border-[#56c5d8] hover:text-[#56c5d8]"
-              >
-                <Linkedin size={16} />
-                LinkedIn
-              </a>
-            </div>
+            <form onSubmit={sendEmail} className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="contact-field">
+                  <span>Name</span>
+                  <input name="name" type="text" autoComplete="name" required placeholder="Your name" />
+                </label>
+                <label className="contact-field">
+                  <span>Email</span>
+                  <input name="email" type="email" autoComplete="email" required placeholder="you@example.com" />
+                </label>
+              </div>
+              <label className="contact-field">
+                <span>Subject</span>
+                <input name="subject" type="text" required placeholder="Project or job opportunity" />
+              </label>
+              <label className="contact-field">
+                <span>Message</span>
+                <textarea name="message" rows={4} required placeholder="Tell me a little about your project or opportunity" />
+              </label>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 rounded-xl bg-[#56c5d8] px-5 py-3 text-sm font-bold text-[#0e1726] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  <Send size={16} />
+                  Prepare Email
+                </button>
+                <a
+                  href="mailto:mt486045@gmail.com"
+                  className="text-xs font-semibold text-slate-400 transition-colors hover:text-[#56c5d8]"
+                >
+                  Or email directly
+                </a>
+              </div>
+              <p aria-live="polite" className="min-h-4 text-xs text-[#56c5d8]">
+                {formStatus}
+              </p>
+            </form>
           </motion.div>
 
           {/* Contact Info */}

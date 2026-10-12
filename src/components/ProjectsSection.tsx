@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, Github, ExternalLink } from "lucide-react";
+import { X, ChevronRight, Github, ExternalLink, Trophy, LockKeyhole } from "lucide-react";
 
 interface Project {
   id: string;
@@ -13,197 +13,157 @@ interface Project {
   color: string;
   description: string;
   highlights: string[];
+  role: string;
+  challenge: string;
+  outcome: string;
+  featured?: boolean;
   status: "Ongoing" | "Completed";
   githubUrl?: string;
+  secondaryGithubUrl?: string;
+  liveUrl?: string;
+  codeAccess?: boolean;
 }
 
 const PROJECTS: Project[] = [
   {
-    id: "telemedicine",
-    title: "Telemedicine & Video Consultation",
-    subtitle: "Real-Time Healthcare Platform",
-    category: ["real-time"],
-    stack: [
-      "Next.js",
-      "WebRTC",
-      "Socket.io",
-      "Mediasoup/LiveKit",
-      "Prisma",
-      "Redis",
-      "Stripe",
-      "Cloudinary",
-    ],
-    color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19/telemedicine_appointment",
-    description:
-      "A comprehensive telemedicine platform enabling patients to book video consultations with doctors, featuring real-time video/audio through WebRTC with SFU architecture, appointment scheduling, prescription management, and Stripe payment processing.",
-    highlights: [
-      "WebRTC peer-to-peer & SFU video architecture with Mediasoup/LiveKit",
-      "Real-time chat, notifications, and presence via Socket.io",
-      "Stripe payment integration for consultation fees",
-      "Redis caching for session management and rate limiting",
-      "Cloudinary for medical document and prescription storage",
-    ],
-    status: "Ongoing",
-  },
-  {
-    id: "jobportal",
-    title: "JobPortal — AI-Powered Platform",
-    subtitle: "Gemini AI Job Matching Engine",
-    category: ["ai"],
-    stack: [
-      "Next.js",
-      "PostgreSQL",
-      "Gemini API",
-      "Prisma",
-      "Tailwind CSS",
-    ],
-    color: "#56c5d8",
-    description:
-      "An intelligent job platform that leverages Google Gemini AI for smart job-candidate matching, resume analysis, and automated job recommendations based on skills and preferences.",
-    highlights: [
-      "Google Gemini API integration for AI-powered job matching",
-      "Automated resume parsing and skill extraction",
-      "PostgreSQL with Prisma ORM for complex relational queries",
-      "Server-side rendering with Next.js App Router",
-      "Advanced filtering, search, and recommendation engine",
-    ],
-    status: "Completed",
-  },
-  {
-    id: "swc",
-    title: "Syed Watch Company (SWC)",
-    subtitle: "Full-Featured E-Commerce Platform",
-    category: ["ecommerce"],
+    id: "smart-track",
+    title: "Smart Track",
+    subtitle: "Multi-Institute Transport Management System",
+    category: ["award", "full-stack"],
     stack: [
       "React.js",
       "Node.js",
+      "Express.js",
       "PostgreSQL",
-      "Stripe",
-      "Supabase",
-      "OAuth 2.0",
+      "Socket.io",
+      "Google Maps",
+      "JWT",
+      "Tailwind CSS",
     ],
     color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19/SWC-Syed-Watch-Company-",
+    liveUrl: "https://bus-frontend-rho.vercel.app",
+    codeAccess: true,
     description:
-      "A complete e-commerce platform for luxury watches with secure payment processing, OAuth authentication, inventory management, and a sleek product browsing experience.",
+      "Smart Track is a full-stack, multi-institute transport management system for administrators, students, and drivers. It supports live vehicle tracking, institute-based access, fleet and route management, student access periods, payments, and operational reporting. The project won the Tech Category in the ETTP Cycle Spring 2026 at SEE Pakistan 2026.",
+    role: "Full-Stack Developer",
+    challenge: "Keep location and transport data synchronized in real time while isolating each institute's users and operations.",
+    outcome: "Built an award-winning working platform and won the ETTP Cycle Spring 2026 Tech Category at SEE Pakistan 2026.",
+    featured: true,
     highlights: [
-      "Stripe checkout integration with webhook order confirmation",
-      "OAuth 2.0 social login (Google, GitHub)",
-      "Supabase for real-time database and file storage",
-      "Product catalog with advanced filtering and search",
-      "Admin dashboard for inventory and order management",
-    ],
-    status: "Completed",
-  },
-  {
-    id: "lms",
-    title: "LMS — Learning Management System",
-    subtitle: "Real-Time Collaborative Learning",
-    category: ["real-time"],
-    stack: ["MongoDB", "Express.js", "React.js", "Node.js", "WebSockets", "Socket.io"],
-    color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19/LMS",
-    description:
-      "A feature-rich learning management system with real-time class interactions, course management, progress tracking, and live collaboration features powered by WebSockets.",
-    highlights: [
-      "MERN stack architecture with modular design patterns",
-      "Real-time class interactions and live Q&A via Socket.io",
-      "Course creation, enrollment, and progress tracking",
-      "File upload and media management for course materials",
-      "Role-based dashboards for students, instructors, and admins",
-    ],
-    status: "Completed",
-  },
-  {
-    id: "talent-hr",
-    title: "Talent-for-HR — Assessment Module",
-    subtitle: "Enterprise HR Tech Solution",
-    category: ["enterprise"],
-    stack: ["React.js", "Express.js", "MySQL", "JWT", "RBAC"],
-    color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19/Itsolera_MERN_Project",
-    description:
-      "An enterprise-grade HR assessment platform built during the Ezitech internship, enabling organizations to create, manage, and evaluate candidate assessments with role-based access control.",
-    highlights: [
-      "Complex MySQL queries for assessment analytics and reporting",
-      "JWT authentication with refresh token rotation",
-      "Role-Based Access Control (RBAC) — HR, Manager, Candidate roles",
-      "Assessment builder with multiple question types",
-      "Performance analytics dashboard with data visualization",
-    ],
-    status: "Completed",
-  },
-  {
-    id: "hotel-booking",
-    title: "Hotel Booking System",
-    subtitle: "Comprehensive Reservation Platform",
-    category: ["ecommerce", "enterprise"],
-    stack: ["Node.js", "Express.js", "PostgreSQL", "React", "Prisma"],
-    color: "#56c5d8",
-    githubUrl: "https://github.com/smfahad19/Hotal_Booking_System-MERN-",
-    description:
-      "A complete hotel booking platform allowing users to search for rooms, view availability in real-time, and make secure reservations with integrated payment processing.",
-    highlights: [
-      "Real-time room availability and inventory management",
-      "Secure payment processing integration",
-      "PostgreSQL database for reliable transaction handling",
-      "Admin dashboard for booking management",
-      "Advanced search with filtering by amenities, price, and dates",
-    ],
-    status: "Completed",
-  },
-  {
-    id: "portfolio",
-    title: "Personal Developer Portfolio",
-    subtitle: "Interactive & Animated Web Experience",
-    category: ["all"],
-    stack: ["Next.js", "Framer Motion", "Tailwind CSS", "React"],
-    color: "#56c5d8",
-    description:
-      "A highly interactive, performance-optimized personal portfolio designed to showcase my engineering skills and projects with a premium, dynamic user interface.",
-    highlights: [
-      "Custom canvas-based particle network background",
-      "Complex scroll animations and page transitions using Framer Motion",
-      "Modern glassmorphism UI design with Tailwind CSS v4",
-      "Fully responsive and mobile-optimized layout",
-      "Component-based architecture for scalability",
-    ],
-    status: "Completed",
-  },
-  {
-    id: "pitchnest",
-    title: "Pitchnest",
-    subtitle: "Startup & Idea Pitching Platform",
-    category: ["enterprise"],
-    stack: ["MongoDB", "Express.js", "React", "Node.js", "Mongoose"],
-    color: "#56c5d8",
-    description:
-      "A specialized platform connecting entrepreneurs with investors, allowing users to create detailed pitches, upload pitch decks, and facilitate secure communications.",
-    highlights: [
-      "Full MERN stack implementation with Mongoose ODM",
-      "Secure user authentication and role management (Founder/Investor)",
-      "Document upload and processing for pitch decks",
-      "Interactive dashboard for tracking pitch engagement",
-      "RESTful API architecture for scalable data operations",
+      "Live driver GPS updates through Socket.io with Google Maps and OpenStreetMap support",
+      "Institute-scoped administrators, students, drivers, buses, and routes",
+      "JWT authentication with account activation, suspension, and access expiry controls",
+      "Payment records and downloadable PDF reports for operational data",
+      "Winner of the ETTP Cycle Spring 2026 Tech Category at SEE Pakistan 2026",
     ],
     status: "Ongoing",
   },
   {
-    id: "axorvian",
-    title: "Axorvian Company Website",
-    subtitle: "Corporate Web Presence",
-    category: ["enterprise"],
-    stack: ["Python", "Flask", "SQL", "HTML/CSS", "JavaScript"],
+    id: "ali-public-school",
+    title: "Ali Public School",
+    subtitle: "Full-Stack School Website",
+    category: ["full-stack", "business"],
+    stack: ["React.js", "Node.js", "Express.js", "Vite", "CSS"],
+    color: "#56c5d8",
+    githubUrl: "https://github.com/Tahanawaz/Ali-public-school",
+    liveUrl: "https://ali-public-school-nu.vercel.app",
+    description:
+      "A full-stack school website that presents academics, campus information, events, admissions, and inquiry services through a React frontend and Express API.",
+    role: "Full-Stack Developer",
+    challenge: "Connect public school content and inquiry flows with protected administrative access.",
+    outcome: "Delivered one responsive platform for information, admissions, events, and administration.",
+    highlights: [
+      "Online admission and contact inquiry flows",
+      "Academic programs, announcements, events, and faculty content",
+      "Event RSVP functionality and backend-powered statistics",
+      "Protected administrator access to admission records",
+    ],
+    status: "Completed",
+  },
+  {
+    id: "toolora",
+    title: "Toolora",
+    subtitle: "Privacy-Conscious Online Tools Platform",
+    category: ["tools"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PDF.js"],
+    color: "#56c5d8",
+    githubUrl: "https://github.com/Tahanawaz/Toolora",
+    liveUrl: "https://toolora-weld.vercel.app",
+    description:
+      "An all-in-one online tools platform with 41 dedicated utilities for text, developer, image, document, and PDF workflows.",
+    role: "Next.js Developer",
+    challenge: "Support many file and text workflows while keeping processing fast and privacy-conscious in the browser.",
+    outcome: "Combined 41 searchable utilities in one responsive light and dark interface.",
+    highlights: [
+      "Local browser-based image and PDF processing",
+      "PDF merge, split, conversion, rotation, watermarking, and protection",
+      "Image compression, conversion, resizing, cropping, and background removal",
+      "Responsive light/dark interface with search across 41 tools",
+    ],
+    status: "Completed",
+  },
+  {
+    id: "the-hair-club",
+    title: "The Hair Club",
+    subtitle: "Men's Salon Website & Booking Experience",
+    category: ["business"],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    color: "#56c5d8",
+    githubUrl: "https://github.com/Tahanawaz/The-Hair-Club",
+    liveUrl: "https://the-hair-club.vercel.app",
+    description:
+      "A responsive business website for a men's salon, presenting its services, packages, pricing, gallery, reviews, and appointment options.",
+    role: "Frontend Developer",
+    challenge: "Turn a detailed service catalogue into a clear mobile-friendly booking journey.",
+    outcome: "Delivered a responsive showcase with direct WhatsApp appointment booking.",
+    highlights: [
+      "Service catalogue with clear starting prices",
+      "Curated grooming packages and promotional gallery",
+      "Direct WhatsApp appointment booking",
+      "Responsive navigation, image gallery filters, and testimonials",
+    ],
+    status: "Completed",
+  },
+  {
+    id: "washpanda",
+    title: "WashPanda",
+    subtitle: "Full-Stack Service Booking Platform",
+    category: ["full-stack", "business"],
+    stack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
+    color: "#56c5d8",
+    githubUrl: "https://github.com/Tahanawaz/washpanda-Frontend",
+    secondaryGithubUrl: "https://github.com/Tahanawaz/washpanda-Backend",
+    description:
+      "A full-stack service booking platform with a React customer experience and an Express/MongoDB API for operations and administration.",
+    role: "Full-Stack Developer",
+    challenge: "Coordinate customer booking flows with service, content, and administrative operations.",
+    outcome: "Built separate frontend and backend applications backed by a MongoDB API.",
+    highlights: [
+      "Customer authentication and service booking flows",
+      "Catalog, packages, gallery, reviews, and contact management",
+      "Administrative dashboard and application settings",
+      "MongoDB-backed API with separate frontend and backend repositories",
+    ],
+    status: "Completed",
+  },
+  {
+    id: "skin-care-store",
+    title: "Skin Care Store",
+    subtitle: "Inventory, Billing & Product Matching System",
+    category: ["full-stack", "business"],
+    stack: [],
     color: "#56c5d8",
     description:
-      "A professional corporate website developed for Axorvian, featuring dynamic content management, service showcases, and client lead generation forms.",
+      "A skincare store management system for maintaining products, billing customers, and keeping stock quantities updated. Customers can enter a reported skin condition, and the system shows relevant skincare products currently available in the store's inventory.",
+    role: "Full-Stack Developer",
+    challenge: "Connect product matching, billing, and live stock updates without recommending unavailable inventory.",
+    outcome: "In progress: a single workflow for product management, billing, inventory, and stock-aware product matching.",
     highlights: [
-      "Robust backend developed with Python and Flask",
-      "SQL database integration for content and lead storage",
-      "Custom CMS for easy content updates by the marketing team",
-      "Optimized for SEO and fast page load speeds",
-      "Responsive front-end design",
+      "Add, update, and delete skincare products",
+      "Stock quantity management and inventory updates",
+      "Customer billing integrated with available stock",
+      "Product matching based on a customer's reported skin condition",
+      "Only matching products available in current stock are displayed",
     ],
     status: "Completed",
   },
@@ -211,10 +171,10 @@ const PROJECTS: Project[] = [
 
 const FILTERS = [
   { id: "all", label: "All Projects" },
-  { id: "real-time", label: "Real-Time & WebRTC" },
-  { id: "ai", label: "AI Powered" },
-  { id: "ecommerce", label: "E-Commerce" },
-  { id: "enterprise", label: "Enterprise" },
+  { id: "award", label: "Award Winner" },
+  { id: "full-stack", label: "Full Stack" },
+  { id: "tools", label: "Web Tools" },
+  { id: "business", label: "Business Sites" },
 ];
 
 export default function ProjectsSection() {
@@ -292,7 +252,7 @@ export default function ProjectsSection() {
             Featured <span className="text-accent">Projects</span>
           </h2>
           <p className="max-w-3xl text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed">
-            A selection of my best work, ranging from AI-powered platforms to real-time communication apps.
+            A selection of my full-stack products, business websites, web tools, and award-winning work.
           </p>
         </motion.div>
 
@@ -339,7 +299,6 @@ export default function ProjectsSection() {
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 onClick={(event) => openProject(project, event.currentTarget)}
-                aria-label={`View details for ${project.title}`}
                 className="glass-card p-6 cursor-pointer group text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#56c5d8]"
               >
                 {/* Color accent */}
@@ -367,6 +326,11 @@ export default function ProjectsSection() {
                   >
                     {project.status}
                   </span>
+                  {project.featured && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-amber-300/30 bg-amber-300/10 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wider text-amber-200">
+                      <Trophy size={11} aria-hidden="true" /> Award Winner
+                    </span>
+                  )}
                 </div>
 
                 {/* Title */}
@@ -411,7 +375,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+            className="fixed inset-0 z-[999] flex items-start justify-center overflow-y-auto p-3 pt-4 sm:p-4 sm:pt-6 bg-black/75 backdrop-blur-sm"
             onClick={() => setSelectedProject(null)}
             role="presentation"
           >
@@ -426,7 +390,7 @@ export default function ProjectsSection() {
               aria-modal="true"
               aria-labelledby="project-dialog-title"
               aria-describedby="project-dialog-description"
-              className="glass-card relative w-full max-w-2xl max-h-[calc(100dvh-2rem)] overflow-y-auto p-6 pt-14 sm:p-8 sm:pt-14"
+              className="project-modal glass-card relative w-full max-w-5xl max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)] p-5 pt-12 sm:p-7 sm:pt-12 lg:p-8"
             >
               {/* Close */}
               <button
@@ -438,106 +402,147 @@ export default function ProjectsSection() {
                 <X size={18} />
               </button>
 
-              {/* Accent bar */}
-              <div
-                className="h-1.5 w-16 rounded-full mb-6"
-                style={{ background: selectedProject.color }}
-              />
-
-              {/* Status */}
-              <span
-                className="inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider mb-4"
-                style={{
-                  color:
-                    selectedProject.status === "Ongoing"
-                      ? "#56c5d8"
-                      : "#8c9ba3",
-                  background:
-                    selectedProject.status === "Ongoing"
+              <div className="mb-5 flex flex-wrap items-center gap-3 pr-10">
+                <div
+                  className="h-1.5 w-16 rounded-full"
+                  style={{ background: selectedProject.color }}
+                />
+                <span
+                  className="rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+                  style={{
+                    color: selectedProject.status === "Ongoing" ? "#56c5d8" : "#8c9ba3",
+                    background: selectedProject.status === "Ongoing"
                       ? "rgba(112,225,255,0.1)"
                       : "rgba(140,155,163,0.1)",
-                  border: `1px solid ${
-                    selectedProject.status === "Ongoing"
+                    border: `1px solid ${selectedProject.status === "Ongoing"
                       ? "rgba(112,225,255,0.2)"
-                      : "rgba(140,155,163,0.2)"
-                  }`,
-                }}
-              >
-                {selectedProject.status}
-              </span>
+                      : "rgba(140,155,163,0.2)"}`,
+                  }}
+                >
+                  {selectedProject.status === "Ongoing" ? "In Progress" : "Completed"}
+                </span>
+                {selectedProject.featured && (
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-amber-200">
+                    <Trophy size={12} aria-hidden="true" /> Featured Award Winner
+                  </span>
+                )}
+              </div>
 
-              {/* Title */}
-              <h3 id="project-dialog-title" className="text-xl sm:text-2xl font-extrabold text-white mb-1">
+              <h3 id="project-dialog-title" className="text-2xl sm:text-3xl font-extrabold text-white mb-1">
                 {selectedProject.title}
               </h3>
-              <p className="text-sm text-slate-400 mb-5">
-                {selectedProject.subtitle}
-              </p>
+              <p className="text-sm text-slate-400 mb-5">{selectedProject.subtitle}</p>
 
-              {/* Description */}
-              <p id="project-dialog-description" className="text-sm text-slate-300 leading-relaxed mb-6">
-                {selectedProject.description}
-              </p>
-
-              {/* Highlights */}
-              <h4 className="text-xs font-bold text-[#56c5d8] uppercase tracking-wider mb-3">
-                Key Technical Highlights
-              </h4>
-              <ul className="space-y-2.5 mb-6">
-                {selectedProject.highlights.map((h, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 text-sm text-slate-400"
-                  >
-                    <span
-                      className="mt-1.5 h-1.5 w-1.5 rounded-full"
-                      style={{ background: selectedProject.color }}
-                    />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Tech Stack */}
-              <h4 className="text-xs font-bold text-[#56c5d8] uppercase tracking-wider mb-3">
-                Tech Stack
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedProject.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-lg px-3 py-1.5 text-xs font-medium text-slate-300 border"
-                    style={{
-                      background: `${selectedProject.color}08`,
-                      borderColor: `${selectedProject.color}20`,
-                    }}
-                  >
-                    {tech}
-                  </span>
+              <div className="mb-5 grid gap-2 sm:grid-cols-3">
+                {[
+                  ["My Role", selectedProject.role],
+                  ["Challenge", selectedProject.challenge],
+                  ["Outcome", selectedProject.outcome],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-xl border border-white/10 bg-white/[0.025] p-3">
+                    <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-[#56c5d8]">{label}</p>
+                    <p className="text-xs leading-relaxed text-slate-300">{value}</p>
+                  </div>
                 ))}
               </div>
 
-              {selectedProject.githubUrl ? (
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#56c5d8] px-5 py-3 text-sm font-bold text-[#0e1726] transition-colors hover:bg-white"
-                >
-                  <Github size={17} />
-                  Visit Code
-                  <ExternalLink size={14} />
-                </a>
-              ) : (
-                <a
-                  href="#contact"
-                  onClick={() => setSelectedProject(null)}
-                  className="mt-7 inline-flex items-center gap-2 rounded-xl border border-[#56c5d8]/40 px-5 py-3 text-sm font-bold text-[#56c5d8] transition-colors hover:bg-[#56c5d8] hover:text-[#0e1726]"
-                >
-                  Ask about this project
-                  <ChevronRight size={15} />
-                </a>
-              )}
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:gap-8">
+                <div>
+                  <p id="project-dialog-description" className="text-sm text-slate-300 leading-relaxed mb-5">
+                    {selectedProject.description}
+                  </p>
+
+                  <h4 className="text-xs font-bold text-[#56c5d8] uppercase tracking-wider mb-3">
+                    Key Technical Highlights
+                  </h4>
+                  <ul className="space-y-2">
+                    {selectedProject.highlights.map((h, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-slate-400">
+                        <span
+                          className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full"
+                          style={{ background: selectedProject.color }}
+                        />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="lg:border-l lg:border-white/10 lg:pl-8">
+                  {selectedProject.stack.length > 0 && (
+                    <>
+                      <h4 className="text-xs font-bold text-[#56c5d8] uppercase tracking-wider mb-3">
+                        Tech Stack
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.stack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-lg px-3 py-1.5 text-xs font-medium text-slate-300 border"
+                            style={{
+                              background: `${selectedProject.color}08`,
+                              borderColor: `${selectedProject.color}20`,
+                            }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </>
+                  )}
+
+                  <div className="mt-5 flex flex-wrap gap-2 lg:flex-col">
+                {selectedProject.liveUrl && (
+                  <a
+                    href={selectedProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#56c5d8] px-4 py-2.5 text-sm font-bold text-[#0e1726] transition-colors hover:bg-white"
+                  >
+                    Live Demo <ExternalLink size={14} />
+                  </a>
+                )}
+                {selectedProject.githubUrl && (
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:border-[#56c5d8] hover:text-[#56c5d8]"
+                  >
+                    <Github size={17} />
+                    {selectedProject.secondaryGithubUrl ? "Frontend Code" : "View Code"}
+                  </a>
+                )}
+                {selectedProject.secondaryGithubUrl && (
+                  <a
+                    href={selectedProject.secondaryGithubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:border-[#56c5d8] hover:text-[#56c5d8]"
+                  >
+                    <Github size={17} /> Backend Code
+                  </a>
+                )}
+                {selectedProject.codeAccess && (
+                  <a
+                    href={`mailto:mt486045@gmail.com?subject=${encodeURIComponent(`${selectedProject.title} — Code Access Request`)}&body=${encodeURIComponent(`Hi Taha,\n\nI reviewed ${selectedProject.title} on your portfolio and would like to request access to the source code.\n\nRegards,`)}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#56c5d8]/40 px-4 py-2.5 text-sm font-bold text-[#56c5d8] transition-colors hover:bg-[#56c5d8] hover:text-[#0e1726]"
+                  >
+                    <LockKeyhole size={15} /> Request Code Access
+                  </a>
+                )}
+                {!selectedProject.liveUrl && !selectedProject.githubUrl && (
+                  <a
+                    href="#contact"
+                    onClick={() => setSelectedProject(null)}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#56c5d8]/40 px-4 py-2.5 text-sm font-bold text-[#56c5d8] transition-colors hover:bg-[#56c5d8] hover:text-[#0e1726]"
+                  >
+                    Ask about this project <ChevronRight size={15} />
+                  </a>
+                )}
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         )}

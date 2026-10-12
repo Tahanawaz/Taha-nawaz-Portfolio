@@ -58,7 +58,7 @@ export default function Navbar() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Back to the top"
+          aria-label="TN — back to the top"
           className="flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-[#56c5d8] text-[#0e1726] font-extrabold text-lg shadow-lg shadow-black/20"
         >
           TN

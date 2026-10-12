@@ -7,6 +7,7 @@ import {
   ArrowDown,
   Github,
   Code2,
+  FileText,
 } from "lucide-react";
 
 const ROLES = [
@@ -21,8 +22,11 @@ const STATS = [
   { label: "Experience", value: "1 yr." },
   { label: "Internships", value: "2" },
   { label: "CGPA", value: "3.70" },
-  { label: "Certificates", value: "3" },
+  { label: "Projects", value: "6" },
 ];
+
+const RESUME_URL = "/Taha-Nawaz-Resume.pdf";
+const RESUME_AVAILABLE = false;
 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
@@ -74,17 +78,17 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative z-10 min-h-screen flex items-center section-padding pt-32 lg:pt-40"
+      className="relative z-10 min-h-screen overflow-x-clip flex items-center section-padding pt-32 lg:pt-40"
     >
-      <div className="mx-auto max-w-7xl w-full">
+      <div className="mx-auto min-w-0 max-w-7xl w-full">
         <motion.div
           variants={container}
-          initial="hidden"
+          initial={false}
           animate="show"
-          className="grid lg:grid-cols-12 gap-14 lg:gap-10 items-center max-w-7xl mx-auto"
+          className="grid min-w-0 w-full lg:grid-cols-12 gap-14 lg:gap-10 items-center max-w-7xl mx-auto"
         >
           {/* ── Left: Text Content ── */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          <div className="min-w-0 lg:col-span-7 flex flex-col justify-center">
             {/* Status Badge */}
             <motion.div variants={fadeUp} className="mb-6">
               <span className="inline-flex items-center gap-3 border-l-2 border-[#56c5d8] pl-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#56c5d8]">
@@ -155,12 +159,34 @@ export default function HeroSection() {
                 <Github size={16} className="text-[#56c5d8]" />
                 Explore GitHub
               </motion.a>
+
+              {RESUME_AVAILABLE ? (
+                <motion.a
+                  href={RESUME_URL}
+                  download="Taha-Nawaz-Resume.pdf"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-2 rounded-sm border border-white/[0.2] px-5 py-3 text-sm font-bold text-[#f3f0e8] transition-colors hover:border-[#56c5d8] hover:text-[#56c5d8]"
+                >
+                  <FileText size={16} />
+                  Download Resume
+                </motion.a>
+              ) : (
+                <span
+                  aria-disabled="true"
+                  title="Resume will be available here soon"
+                  className="flex cursor-not-allowed items-center gap-2 rounded-sm border border-dashed border-white/[0.14] px-5 py-3 text-sm font-bold text-slate-500"
+                >
+                  <FileText size={16} />
+                  Resume Coming Soon
+                </span>
+              )}
             </motion.div>
 
             {/* Stats Strip */}
             <motion.div
               variants={fadeUp}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+              className="grid min-w-0 grid-cols-2 sm:grid-cols-4 gap-4"
             >
               {STATS.map((s) => (
                 <div
@@ -181,7 +207,7 @@ export default function HeroSection() {
           {/* ── Right: Visual Profile ── */}
           <motion.div
             variants={fadeUp}
-            className="lg:col-span-5 flex justify-center lg:justify-end lg:pt-10"
+            className="min-w-0 lg:col-span-5 flex justify-center lg:justify-end lg:pt-10"
           >
             <div className="relative w-full max-w-[21rem] aspect-[229/400] lg:-translate-y-3 lg:rotate-2">
               {/* Decorative Glow */}
@@ -193,7 +219,7 @@ export default function HeroSection() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <Image
-                  src="/images/Taha-profile.jpg"
+                  src="/images/Taha-profile.webp"
                   alt="Taha Nawaz"
                   fill
                   priority

@@ -16,7 +16,7 @@ const structuredData = {
   name: "Taha Nawaz",
   alternateName: ["Taha", "Taha Nawaz MERN Stack Developer"],
   url: SITE_URL,
-  image: `${SITE_URL}/images/Taha-profile.jpg`,
+  image: `${SITE_URL}/images/Taha-profile.webp`,
   jobTitle: "MERN Stack Developer & Software Engineer",
   description:
     "Software Engineering student and MERN Stack Developer with experience in React.js, Node.js, backend development, and real-time systems.",

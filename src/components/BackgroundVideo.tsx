@@ -41,8 +41,10 @@ export default function BackgroundVideo() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (motionPreference.matches) return;
+    const resourcePreference = window.matchMedia(
+      "(max-width: 767px), (prefers-reduced-motion: reduce)"
+    );
+    if (resourcePreference.matches) return;
 
     const draw = (ts: number) => {
       const cvs = canvasRef.current;

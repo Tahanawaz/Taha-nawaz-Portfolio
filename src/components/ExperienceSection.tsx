@@ -7,7 +7,7 @@ import { MapPin, Calendar, Briefcase } from "lucide-react";
 const EXPERIENCES = [
   {
     company: "DeepQuery",
-    role: "MERN Stack Developer Intern",
+    role: "MERN Stack Developer ",
     period: "Apr 2026 – Sep 2026",
     location: "Johar Town, Lahore · On-site",
     color: "#56c5d8",

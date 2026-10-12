@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   creator: "Taha Nawaz",
   publisher: "Taha Nawaz",
   icons: {
-    icon: "/images/Taha-profile.jpg",
-    shortcut: "/images/Taha-profile.jpg",
-    apple: "/images/Taha-profile.jpg",
+    icon: "/images/Taha-profile.webp",
+    shortcut: "/images/Taha-profile.webp",
+    apple: "/images/Taha-profile.webp",
   },
   alternates: {
     canonical: "/",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     locale: "en_PK",
     images: [
       {
-        url: "/images/Taha-profile.jpg",
+        url: "/images/Taha-profile.webp",
         width: 916,
         height: 1600,
         alt: "Taha Nawaz — Software Engineer",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "Taha Nawaz | MERN Stack Developer & Software Engineer",
     description:
       "Software Engineering student and MERN Stack Developer based in Lahore, Pakistan.",
-    images: ["/images/Taha-profile.jpg"],
+    images: ["/images/Taha-profile.webp"],
   },
 };
 
