@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-	--ink: #0b1220;
-	--ink-soft: #121d31;
+	--ink: #09111f;
+	--ink-soft: #111d30;
 	--paper: #f4f7fb;
-	--muted: #93a0b2;
-	--line: rgba(244, 247, 251, 0.12);
+	--muted: #a2aec0;
+	--line: rgba(190, 211, 232, 0.16);
 	--cyan: #56c5d8;
 	--blue: #56c5d8;
-	--amber: #56c5d8;
+	--amber: #f6c453;
 }
 
 * {
@@ -24,7 +24,9 @@ body {
 	min-width: 320px;
 	overflow-x: hidden;
 	background-color: var(--ink);
-	background-image: none;
+	background-image:
+		radial-gradient(circle at 12% 8%, rgba(86, 197, 216, 0.055), transparent 26rem),
+		linear-gradient(180deg, #09111f 0%, #0b1423 48%, #080f1b 100%);
 	color: var(--paper);
 	font-family: var(--font-manrope), sans-serif;
 	letter-spacing: 0.01em;
@@ -71,15 +73,20 @@ a {
 	overflow: hidden;
 	border: 1px solid var(--line);
 	border-radius: 1rem;
-	background: rgba(18, 29, 49, 0.94);
-	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+	background: linear-gradient(145deg, rgba(20, 33, 54, 0.97), rgba(14, 25, 43, 0.95));
+	box-shadow:
+		0 18px 48px rgba(0, 0, 0, 0.3),
+		inset 0 1px 0 rgba(255, 255, 255, 0.055);
 	backdrop-filter: blur(10px);
 	transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .glass-card:hover {
-	border-color: rgba(86, 197, 216, 0.58);
-	box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34), 0 0 0 3px rgba(86, 197, 216, 0.06);
+	border-color: rgba(86, 197, 216, 0.42);
+	box-shadow:
+		0 22px 58px rgba(0, 0, 0, 0.38),
+		0 0 0 1px rgba(86, 197, 216, 0.045),
+		inset 0 1px 0 rgba(255, 255, 255, 0.065);
 }
 
 .text-accent {
@@ -155,6 +162,27 @@ textarea {
 .project-modal {
 	overflow-y: auto;
 	overscroll-behavior: contain;
+}
+
+.contact-section {
+	isolation: isolate;
+	overflow: hidden;
+}
+
+.contact-section::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 10%;
+	right: -12rem;
+	bottom: 5%;
+	left: 28%;
+	border-radius: 999px;
+	background:
+		radial-gradient(circle at 62% 48%, rgba(86, 197, 216, 0.13), transparent 36%),
+		radial-gradient(circle at 32% 72%, rgba(54, 125, 136, 0.08), transparent 42%);
+	filter: blur(24px);
+	pointer-events: none;
 }
 
 .contact-field {

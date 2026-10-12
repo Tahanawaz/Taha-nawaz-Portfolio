@@ -75,7 +75,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative z-10 section-padding" ref={ref}>
+    <section id="contact" className="contact-section relative z-10 section-padding" ref={ref}>
       <div className="mx-auto max-w-6xl">
         {/* ── Header ── */}
         <motion.div
