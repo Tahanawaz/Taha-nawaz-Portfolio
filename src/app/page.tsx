@@ -20,7 +20,7 @@ const structuredData = {
   jobTitle: "MERN Stack Developer & Software Engineer",
   description:
     "Software Engineering student and MERN Stack Developer with experience in React.js, Node.js, backend development, and real-time systems.",
-  email: "mt486045@gmail.com",
+  email: "taha.dev001@gmail.com",
   telephone: "+923096733225",
   address: {
     "@type": "PostalAddress",

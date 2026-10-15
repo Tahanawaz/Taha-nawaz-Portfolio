@@ -21,8 +21,8 @@ const CONTACT_INFO = [
   },
   {
     icon: Mail,
-    label: "mt486045@gmail.com",
-    href: "mailto:mt486045@gmail.com",
+    label: "taha.dev001@gmail.com",
+    href: "mailto:taha.dev001@gmail.com",
     color: "#56c5d8",
   },
   {
@@ -71,7 +71,7 @@ export default function ContactSection() {
     const body = `Hi Taha,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`;
 
     setFormStatus("Opening your email app with the message ready to send.");
-    window.location.href = `mailto:mt486045@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:taha.dev001@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -176,7 +176,7 @@ export default function ContactSection() {
                   Prepare Email
                 </button>
                 <a
-                  href="mailto:mt486045@gmail.com"
+                  href="mailto:taha.dev001@gmail.com"
                   className="text-xs font-semibold text-slate-400 transition-colors hover:text-[#56c5d8]"
                 >
                   Or email directly

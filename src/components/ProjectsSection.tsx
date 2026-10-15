@@ -525,7 +525,7 @@ export default function ProjectsSection() {
                 )}
                 {selectedProject.codeAccess && (
                   <a
-                    href={`mailto:mt486045@gmail.com?subject=${encodeURIComponent(`${selectedProject.title} — Code Access Request`)}&body=${encodeURIComponent(`Hi Taha,\n\nI reviewed ${selectedProject.title} on your portfolio and would like to request access to the source code.\n\nRegards,`)}`}
+                    href={`mailto:taha.dev001@gmail.com?subject=${encodeURIComponent(`${selectedProject.title} — Code Access Request`)}&body=${encodeURIComponent(`Hi Taha,\n\nI reviewed ${selectedProject.title} on your portfolio and would like to request access to the source code.\n\nRegards,`)}`}
                     className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#56c5d8]/40 px-4 py-2.5 text-sm font-bold text-[#56c5d8] transition-colors hover:bg-[#56c5d8] hover:text-[#0e1726]"
                   >
                     <LockKeyhole size={15} /> Request Code Access
